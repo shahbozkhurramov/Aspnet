@@ -1,0 +1,61 @@
+﻿@model IEnumerable<st.Controllers.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Menu</h2>
+<div>
+    @Html.ActionLink("Go to cart", "Cart")  |
+    @Html.ActionLink("Create New Product", "Create")
+</div>
+<table class="table">
+    <tr>
+        <th>
+            Product Name
+        </th>
+        <th>
+            Price
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) 
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            <a href="@Url.Action("Details", new { id=item.Id })" class="btn btn-primary">Details</a> |
+            <a href="@Url.Action("Edit", new { id=item.Id })" class="btn btn-info">Edit</a> |
+            <a href="@Url.Action("Delete", new { id=item.Id })" class="btn btn-info">Delete</a> |
+            <a href="@Url.Action("CartPost", new { id=item.Id })" class="btn btn-info">Add to cart</a> |
+            
+        </td>
+    </tr>
+}
+</table>
+<input type='button' value="-" onclick="button2()" />
+<span id="output-area">1</span>
+<input type='button' value="+" onclick="button1()" />
+<script>
+    var x = 1;
+    document.getElementById('output-area').innerHTML = x;
+    function button1() {
+    document.getElementById('output-area').innerHTML = ++x;
+
+    }
+    function button2() {
+    if(x <= 1 ){
+        return false ;
+    }
+    document.getElementById('output-area').innerHTML = --x;
+    }
+</script>
+<div>
+    <component type="typeof(st.Blazor.Counter)" render-mode="ServerPrerendered" />
+</div>

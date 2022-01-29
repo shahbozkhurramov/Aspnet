@@ -1,0 +1,14 @@
+@inject HttpClient Http
+<p role="status">Current count: @currentCount</p>
+
+<a class="btn btn-primary" @onclick="IncrementCount" >Click me</a>
+
+@code {
+    private int currentCount = 0;
+    public DateTime Date { get; set; }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
